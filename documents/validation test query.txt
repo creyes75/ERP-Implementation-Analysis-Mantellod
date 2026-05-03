@@ -1,0 +1,387 @@
+SELECT  "TRANS" as "TRansaccion", 
+		"DocDate" as "FechaDocumento", 
+		"USR" as "Usuario", 
+		COUNT(*) as "Cantidad"
+
+FROM 	(
+			select 	
+					(case when "DocSubType" = '--' then 'VTA FACT' else 'VTA DEB' end) AS "TRANS", 
+					T0."DocEntry", 
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign",
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "OINV" T0
+            union all
+			select 	'VTA COTI' as "TRANS",
+			 		T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+			from 	"OQUT" T0
+			union all
+			select 	'VTA PED' as "TRANS", 
+					T0."DocEntry", 
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign",
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "ORDR" T0
+			union all
+			select 	'VTA DESPACHO' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "ODLN" T0
+			union all
+			select 	'VTA SOLDEV' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "ORRR" T0
+			union all
+			select 	'VTA DEVMERC' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "ORDN" T0
+			union all
+			select 	'VTAS NC' AS "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "ORIN" T0
+		   union all
+			select 'INV SOLTR' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "OWTQ" T0
+			union all
+			select 	'INV TRANF' AS "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "OWTR" T0
+			union all
+			select 	'INV ENTRADA MERC' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from 	"OIGN" T0
+			union all
+			select 'INV SALIDA MERC' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "OIGE" T0
+			union all
+			select 'COMP SOLC' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from "OPRQ" T0
+			
+		
+			
+			union all
+			select 	'COMP PEDIDO' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from 	"OPOR" T0
+			union all
+			select 	'COMP ENTRADA MERC' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from 	"OPDN" T0
+			union all
+			select 	(case when "DocSubType" = '--' then 'COMP FACT PROV' else 'COMP DEB PROV' end) AS "TRANS",   
+				T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from 	"OPCH" T0
+			union all
+			select 	'COMP NC PROV' as "TRANS",
+			 		T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+			from 	"ORPC" T0
+			union all
+			select 	'COMP DEVOL' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."FolioNum", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			from 	"ORPD" T0
+			union all
+			select 	'COMP PREC ENTREGA' as "TRANS",
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					'', 
+					'', 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+			from 	"OIPF" T0
+			union all
+			select 'BCO PAGO RECIBIDO' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					'', 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+			from 	"ORCT" T0
+			union all
+			select 	'BCO PAGO EFECTUADO' as "TRANS", 
+					T0."DocEntry", 	
+					T0."DocNum", 
+					T0."DocDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					'', 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+					from "OVPM" T0
+			union all
+			select 	'BCO DEPOSITOS' as "TRANS", 
+					"DeposId" , 
+					"DeposNum", 
+					"DeposDate", 
+					'', 
+					'', 
+					'', 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+			from 	"ODPS" T0
+			union all
+			select 	'OTR. REG. ACTIVIDADES' as "TRANS", 
+					T0."DocEntry", 
+					T0."DocNum", 
+					T0."CntctDate", 
+					T0."CardCode", 
+					T0."Notes", 
+					T0."ClgCode", 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+			from 	"OCLG" T0
+			union all
+			select 	'PRD. PRODUCCION' AS "TRANS", 
+					T0."DocEntry", 
+					T0."DocNum", 
+					T0."PostDate", 
+					T0."CardCode", 
+					'', 
+					'', 
+					T0."UserSign", 
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) 	as "USR"
+
+			from 	"OWOR" 	T0
+
+                                          union all
+
+                                          select 	
+					'BCO CHQ/LT' AS "TRANS", 
+					T0."BoeKey", 
+					T0."BoeNum", 
+					T0."PmntDate", 
+					T0."CardCode", 
+					T0."CardName", 
+					T0."RefNum", 
+					T0."UserSign",
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			FROM "OBOE" T0
+union all
+Select 
+				case when "CardType" = 'C' then 'SN.CLIENTE' when "CardType" = 'S' then 'SN.PROVEEDOR' ELSE 'SN.LEAD' END AS "TRANS", 
+					0 , 
+					0 , 
+					T0."CreateDate",
+					T0."CardCode", 
+					T0."CardName", 
+					T0."CntctPrsn", 
+					T0."UserSign",
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+				
+		from ocrd T0
+union all
+
+		Select 
+			case WHEN "ItemType" = 'I' then 'COMP ITEMS' else 'ACT.FIJOS' END AS "TRANS", 
+					0 , 
+					0 , 
+					T0."CreateDate",
+					T0."ItemCode", 
+					T0."ItemName", 
+					'', 
+					T0."UserSign",
+					(	select 	T1."U_NAME" 
+						from 	"OUSR" T1 
+						WHERE 	T1."USERID" = T0."UserSign"
+					) as "USR"
+			
+		from "OITM" T0
+
+) AS "TMP"
+
+ GROUP BY "TRANS", "DocDate", "USR"
+ HAVING "DocDate" between '2021-01-01' and '2021-12-31'

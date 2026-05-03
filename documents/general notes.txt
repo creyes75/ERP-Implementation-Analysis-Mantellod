@@ -1,0 +1,44 @@
+
+Los supervisores puedan gestionar solo en sus almacenes por defecto
+Se deberia poder controlar la venta de items sin decimales a menos q la unidad de medida sea el bloque, si es btf si se podria
+
+Se definiriran numero de series por cada almacen o centro de acopio
+la bodega de la transaccion debe esta asociada a la bodega e la series
+La valoracion del servicio de transporte como se calculara?	
+
+Como se maneja Entregas a rendir
+
+datos de usuarios
+
+
+Sr gaurderas consolida y le pasa a Sr. cristian PAredes para temas de suministros de produccion
+envia a Charito Pluas(GYE)
+
+PAra Suministros de oficina es Charito Pluas quien Consolida y busca a sus proveedores
+
+
+
+REuniona manana as las 11am
+Cristian paredes
+Se definira atributos basicos.
+Se puede revisar validaciones para el ingreso de requision
+
+
+Junior - Validaciones por articulos
+Quien podra realizar las compras de MP, insumos
+Quien va ingresar el maestro de articulo - Dtpo de Inv o bodega
+quien va ingresar el maestro de proveedores - Sera 
+
+
+
+
+Reunion de la tarde con la Sra. MAriuxi
+
+
+
+
+Definir 
+QQuien se encargara del ingreso de las compras
+
+
+UNIVERSAL RC-AAPAN1 Control Remoto Aire Acondicionado Panasonic
